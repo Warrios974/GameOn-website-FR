@@ -7,6 +7,8 @@ function editNav() {
   }
 }
 
+let tournament = false;
+
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -21,6 +23,11 @@ const formlastInput = document.getElementById("last");
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalCloseBtn.addEventListener("click", closeModal);
 
+radioCheck.forEach((imput) => imput.addEventListener("click", function(){
+  tournament = true;
+  console.log(tournament);
+}));
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -29,4 +36,10 @@ function launchModal() {
 // Close modal form
 function closeModal() {
   modalbg.style.display = "none";
+}
+
+function validate(e){
+  if(tournament == false){
+    return false;
+  }
 }
