@@ -7,8 +7,16 @@ function editNav() {
   }
 }
 
-let cityTournament = false;
-let termsOfUse = true;
+//
+let firstNameOk = false;
+let lastNameOk = false;
+let emailOk = false;
+let birthdayOk = false;
+let participationOk = false;
+let cityTournamentOk = false;
+let termsOfUseOk = true;
+
+let error = false;
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
@@ -20,29 +28,33 @@ const modalCloseBtn = document.querySelector(".close");
 const radioCheckCity = document.querySelectorAll(".checkbox-city");
 const termsOfUseId = document.querySelector("#checkbox1");
 const validateMessage = document.querySelector(".validateMessage");
+const formReserve = document.querySelector("#reserve");
+const btnSubmit = document.querySelector(".btn-submit");
+const formDataInput = document.querySelectorAll(".formData > input");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalCloseBtn.addEventListener("click", closeModal);
 
-radioCheckCity.forEach((input) => input.addEventListener("click", function(){
-  cityTournament = true;
-}));
-
-termsOfUseId.addEventListener("click", function(){
-  if(termsOfUse){
-    termsOfUse = false;
-  }else{
-    termsOfUse = true;
-  }
+// when btn radio city is check
+formReserve.addEventListener("submit", function(e) {
+  e.preventDefault();
+  validate();
 });
 
-// launch validate function input
-formData[0].addEventListener("input", function(e){twoCaractereOrmore(e,0);});
-formData[1].addEventListener("input", function(e){twoCaractereOrmore(e,1);});
-formData[2].addEventListener("input", function(e){emailValidate(e);});
-formData[3].addEventListener("input", function(e){birthdayValidate(e);});
-formData[4].addEventListener("input", function(e){participationValidate(e);});
+// when btn radio city is check
+radioCheckCity.forEach((input) => input.addEventListener("click", function(){
+  cityTournamentOk = true;
+}));
+
+// when termsOfUse is check
+termsOfUseId.addEventListener("click", function(){
+  if(termsOfUseOk){
+    termsOfUseOk = false;
+  }else{
+    termsOfUseOk = true;
+  }
+});
 
 // launch modal form
 function launchModal() {
@@ -54,70 +66,105 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-// Function validate value input ////////////////////////////////////////////////////////////////
+// Functions validate value input ////////////////////////////////////////////////////////////////
 function twoCaractereOrmore(e,n){
-  let isValid = false;
-  var value = e.target.value;
-  if (value.length >= 2) {
-      isValid = true;
+  if (e.length >= 2) {
       formData[n].removeAttribute("data-error");
       formData[n].removeAttribute("data-error-visible");
+      if(n == 0){
+        firstNameOk = true;
+      }else{
+        lastNameOk = true;
+      }
   } else {
-      isValid = false;
       formData[n].setAttribute("data-error", "Veuillez entrer 2 caractères ou plus.");
       formData[n].setAttribute("data-error-visible", "true");
+      if(n == 0){
+        firstNameOk = false;
+      }else{
+        lastNameOk = false;
+      }
   }
 }
 
 function emailValidate(e){
-  var value = e.target.value;
-  if(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)){
+  if(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e)){
     formData[2].removeAttribute("data-error");
     formData[2].removeAttribute("data-error-visible");
+    emailOk = true;
   }else{
     formData[2].setAttribute("data-error", "Veuillez entrer un email valide s'il vous plaît.");
     formData[2].setAttribute("data-error-visible", "true");
+    emailOk = false;
   }
 }
 
 function birthdayValidate(e){
-  var value = e.target.value;
-  if(value){
+  if(e){
     formData[3].removeAttribute("data-error");
     formData[3].removeAttribute("data-error-visible");
+    birthdayOk = true;
   }else{
     formData[3].setAttribute("data-error", "Vous devez entrer votre date de naissance.");
     formData[3].setAttribute("data-error-visible", "true");
+    birthdayOk = false;
   }
 }
 
 function participationValidate(e){
-  var value = e.target.value;
-  if(/^([0-9]|[1-9][0-9]|100)$/.test(value)){
+  if(/^([0-9]|[1-9][0-9]|100)$/.test(e)){
     formData[4].removeAttribute("data-error");
     formData[4].removeAttribute("data-error-visible");
+    participationOk = true;
   }else{
     formData[4].setAttribute("data-error", "Veuillez entrer un chiffre s'il vous plaît.");
     formData[4].setAttribute("data-error-visible", "true");
+    participationOk = false;
   }
+}
+
+function cityIsSelected(){
+  if(cityTournamentOk == false){
+    formData[5].setAttribute("data-error", "Vous devez choisir une option.");
+    formData[5].setAttribute("data-error-visible", "true");
+  }else{
+    formData[5].removeAttribute("data-error");
+    formData[5].removeAttribute("data-error-visible");
+  }
+}
+
+function termsOfUseIsChecked(){
+  document.getElementById("checkbox1").checked ? 
+    formData[6].removeAttribute("data-error-visible") : 
+    formData[6].setAttribute("data-error-visible", "true");
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Function valider
 function validate(){
-  if(cityTournament == false){
-    formData[5].setAttribute("data-error", "Vous devez choisir une option.");
-    formData[5].setAttribute("data-error-visible", "true");
-    return false;
-  }else{
-    if(termsOfUse == false){
-      formData[6].setAttribute("data-error", "Vous devez vérifier que vous acceptez les termes et conditions.");
-      formData[6].setAttribute("data-error-visible", "true");
-      return false;
-    }else{
-      validate.style.display = "block";
-      setTimeout(3000);
-      return true;
-    }
+  let valueFirstName = formDataInput[0].value;
+  let valueLastName = formDataInput[1].value;
+  let valueEmail = formDataInput[2].value;
+  let valueBirthday = formDataInput[3].value;
+  let valueNbrParticipation = formDataInput[4].value;
+  
+  twoCaractereOrmore(valueFirstName,0);
+  twoCaractereOrmore(valueLastName,1);
+
+  emailValidate(valueEmail);
+  birthdayValidate(valueBirthday);
+
+  participationValidate(valueNbrParticipation);
+
+  cityIsSelected();
+  termsOfUseIsChecked();
+  
+  if(firstNameOk && lastNameOk && emailOk && birthdayOk && participationOk && cityTournamentOk && termsOfUseOk){
+    formReserve.style.display = "none";
+    validateMessage.style.display = "block";
+    formDataInput.forEach((elem) => elem.value = "");
+    /*setTimeout(() => {
+        formReserve.submit();
+    },3000);*/
   }
 }
