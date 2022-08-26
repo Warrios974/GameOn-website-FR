@@ -72,51 +72,43 @@ function displayFrom() {
 
 // Functions validate value input ////////////////////////////////////////////////////////////////
 function twoCaractereOrmore(e,n){
-  if (e.length >= 2) {
-      formData[n].removeAttribute("data-error-visible");
-      if(n == 0){
-        firstNameOk = true;
-      }else{
-        lastNameOk = true;
-      }
-  } else {
-      formData[n].setAttribute("data-error-visible", "true");
-      if(n == 0){
-        firstNameOk = false;
-      }else{
-        lastNameOk = false;
-      }
-  }
+  e.length >= 2 ?(
+    formData[n].removeAttribute("data-error-visible"),
+    n == 0 ? firstNameOk = true : lastNameOk = true
+  ) : (
+    formData[n].setAttribute("data-error-visible", "true"),
+    n == 0 ? firstNameOk = false : lastNameOk = false
+  );
 }
 
 function emailValidate(e){
-  if(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e)){
-    formData[2].removeAttribute("data-error-visible");
-    emailOk = true;
-  }else{
-    formData[2].setAttribute("data-error-visible", "true");
-    emailOk = false;
-  }
+  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e) ? (
+    formData[2].removeAttribute("data-error-visible"),
+    emailOk = true
+  ) : (
+    formData[2].setAttribute("data-error-visible", "true"),
+    emailOk = false
+  );
 }
 
 function birthdayValidate(e){
-  if(e){
-    formData[3].removeAttribute("data-error-visible");
-    birthdayOk = true;
-  }else{
-    formData[3].setAttribute("data-error-visible", "true");
-    birthdayOk = false;
-  }
+  e ? (
+    formData[3].removeAttribute("data-error-visible"),
+    birthdayOk = true
+  ) : (
+    formData[3].setAttribute("data-error-visible", "true"),
+    birthdayOk = false
+  );
 }
 
 function participationValidate(e){
-  if(/^([0-9]|[1-9][0-9]|100)$/.test(e)){
-    formData[4].removeAttribute("data-error-visible");
-    participationOk = true;
-  }else{
-    formData[4].setAttribute("data-error-visible", "true");
-    participationOk = false;
-  }
+  /^([0-9]|[1-9][0-9]|100)$/.test(e) ? (
+    formData[4].removeAttribute("data-error-visible"),
+    participationOk = true
+  ) : (
+    formData[4].setAttribute("data-error-visible", "true"),
+    participationOk = false
+  );
 }
 
 function cityIsSelected(){
@@ -154,9 +146,7 @@ function validate(){
   if(firstNameOk && lastNameOk && emailOk && birthdayOk && participationOk && cityTournamentOk && termsOfUseOk){
     formReserve.style.display = "none";
     validateMessage.style.display = "block";
+    radioCheckCity.forEach((input) => input.checked = false);
     formDataInput.forEach((elem) => elem.value = "");
-    /*setTimeout(() => {
-        formReserve.submit();
-    },3000);*/
   }
 }
