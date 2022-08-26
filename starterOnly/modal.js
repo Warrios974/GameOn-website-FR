@@ -49,11 +49,9 @@ radioCheckCity.forEach((input) => input.addEventListener("click", function(){
 
 // when termsOfUse is check
 termsOfUseId.addEventListener("click", function(){
-  if(termsOfUseOk){
-    termsOfUseOk = false;
-  }else{
-    termsOfUseOk = true;
-  }
+  termsOfUseOk ? 
+  termsOfUseOk = false : 
+  termsOfUseOk = true;
 });
 
 // launch modal form
@@ -64,6 +62,12 @@ function launchModal() {
 // Close modal form
 function closeModal() {
   modalbg.style.display = "none";
+}
+
+// Close modal form
+function displayFrom() {
+  formReserve.style.display = "block";
+  validateMessage.style.display = "none";
 }
 
 // Functions validate value input ////////////////////////////////////////////////////////////////

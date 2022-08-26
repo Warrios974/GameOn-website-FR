@@ -72,7 +72,7 @@
                   id="first"
                   name="first"
                   minlength="2"
-                  required
+                  
                 /><br>
               </div>
               <div
@@ -85,7 +85,7 @@
                   id="last"
                   name="last"
                   minlength="2"
-                  required
+                  
                 /><br>
               </div>
               <div
@@ -97,7 +97,7 @@
                   type="email"
                   id="email"
                   name="email"
-                  required
+                  
                 /><br>
               </div>
               <div
@@ -109,14 +109,14 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                  required
+                  
                 /><br>
               </div>
               <div
                 class="formData"
                 data-error="Veuillez entrer un chiffre s'il vous plaît.">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" >
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -222,6 +222,13 @@
               <p>
                 Merci pour votre inscription
               </p>
+              <input
+                class="btn-submit"
+                type="submit"
+                class="button"
+                value="Fermer"
+                onclick="closeModal(); displayFrom();"
+              />
             </div>
           </div>
         </div>
