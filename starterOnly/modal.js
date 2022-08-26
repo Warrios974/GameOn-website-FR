@@ -69,7 +69,6 @@ function closeModal() {
 // Functions validate value input ////////////////////////////////////////////////////////////////
 function twoCaractereOrmore(e,n){
   if (e.length >= 2) {
-      formData[n].removeAttribute("data-error");
       formData[n].removeAttribute("data-error-visible");
       if(n == 0){
         firstNameOk = true;
@@ -77,7 +76,6 @@ function twoCaractereOrmore(e,n){
         lastNameOk = true;
       }
   } else {
-      formData[n].setAttribute("data-error", "Veuillez entrer 2 caractères ou plus.");
       formData[n].setAttribute("data-error-visible", "true");
       if(n == 0){
         firstNameOk = false;
@@ -89,11 +87,9 @@ function twoCaractereOrmore(e,n){
 
 function emailValidate(e){
   if(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(e)){
-    formData[2].removeAttribute("data-error");
     formData[2].removeAttribute("data-error-visible");
     emailOk = true;
   }else{
-    formData[2].setAttribute("data-error", "Veuillez entrer un email valide s'il vous plaît.");
     formData[2].setAttribute("data-error-visible", "true");
     emailOk = false;
   }
@@ -101,11 +97,9 @@ function emailValidate(e){
 
 function birthdayValidate(e){
   if(e){
-    formData[3].removeAttribute("data-error");
     formData[3].removeAttribute("data-error-visible");
     birthdayOk = true;
   }else{
-    formData[3].setAttribute("data-error", "Vous devez entrer votre date de naissance.");
     formData[3].setAttribute("data-error-visible", "true");
     birthdayOk = false;
   }
@@ -113,24 +107,18 @@ function birthdayValidate(e){
 
 function participationValidate(e){
   if(/^([0-9]|[1-9][0-9]|100)$/.test(e)){
-    formData[4].removeAttribute("data-error");
     formData[4].removeAttribute("data-error-visible");
     participationOk = true;
   }else{
-    formData[4].setAttribute("data-error", "Veuillez entrer un chiffre s'il vous plaît.");
     formData[4].setAttribute("data-error-visible", "true");
     participationOk = false;
   }
 }
 
 function cityIsSelected(){
-  if(cityTournamentOk == false){
-    formData[5].setAttribute("data-error", "Vous devez choisir une option.");
-    formData[5].setAttribute("data-error-visible", "true");
-  }else{
-    formData[5].removeAttribute("data-error");
+  !cityTournamentOk ? 
+    formData[5].setAttribute("data-error-visible", "true") : 
     formData[5].removeAttribute("data-error-visible");
-  }
 }
 
 function termsOfUseIsChecked(){

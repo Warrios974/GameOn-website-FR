@@ -63,7 +63,8 @@
               method="get"
             >
               <div
-                class="formData">
+                class="formData"
+                data-error="Veuillez entrer 2 caractères ou plus.">
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
@@ -75,7 +76,8 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Veuillez entrer 2 caractères ou plus.">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -87,7 +89,8 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Veuillez entrer un email valide s'il vous plaît.">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
@@ -98,7 +101,8 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Vous devez entrer votre date de naissance.">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -109,13 +113,15 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Veuillez entrer un chiffre s'il vous plaît.">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData"
+                data-error="Vous devez choisir une ville.">
                 <input
                   class="checkbox-input checkbox-city"
                   type="radio"
