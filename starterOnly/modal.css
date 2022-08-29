@@ -177,7 +177,7 @@ main {
 }
 
 .content {
-  margin: 15% auto;
+  margin: 5% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -496,7 +496,7 @@ footer {
   height: 646px;
 }
 .validateMessage input{
-  margin-top: 50%;
+  margin-top: 70%;
 }
 
 @media screen and (max-width: 800px) {
@@ -535,6 +535,9 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+  .content{
+    margin: 20% auto;
   }
 }
 
