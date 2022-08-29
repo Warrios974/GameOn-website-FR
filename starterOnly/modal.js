@@ -34,7 +34,10 @@ const formDataInput = document.querySelectorAll(".formData > input");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-modalCloseBtn.addEventListener("click", closeModal);
+modalCloseBtn.addEventListener("click", function() {
+  closeModal(); 
+  displayFrom()
+});
 
 // when btn radio city is check
 formReserve.addEventListener("submit", function(e) {
