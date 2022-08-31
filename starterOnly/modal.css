@@ -63,6 +63,7 @@ img {
 
 .topnav a.active {
   background-color: #ff0000;
+  text-decoration: underline;
   color: #ffffff;
   border-radius: 15px;
 }
@@ -173,7 +174,7 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  background-color: rgba(0, 0, 0, 0.0);
 }
 
 .content {
@@ -496,7 +497,7 @@ footer {
   height: 646px;
 }
 .validateMessage input{
-  margin-top: 70%;
+  margin-top: 55%;
 }
 
 @media screen and (max-width: 800px) {

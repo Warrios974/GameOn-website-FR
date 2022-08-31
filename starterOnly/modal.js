@@ -14,7 +14,7 @@ let emailOk = false;
 let birthdayOk = false;
 let participationOk = false;
 let cityTournamentOk = false;
-let termsOfUseOk = true;
+let termsOfUseOk = false;
 
 let error = false;
 
@@ -151,5 +151,7 @@ function validate(){
     validateMessage.style.display = "block";
     radioCheckCity.forEach((input) => input.checked = false);
     formDataInput.forEach((elem) => elem.value = "");
+    termsOfUseId.checked = false;
+    cityTournamentOk = false;
   }
 }
