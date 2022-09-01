@@ -54,10 +54,10 @@ function displayFrom() {
 // Vérification de la longeur de l'input
 function twoCaractereOrmore(value,num){
   value.length >= 2 ?(
-    formData[n].removeAttribute("data-error-visible"),
+    formData[num].removeAttribute("data-error-visible"),
     num == 0 ? firstNameOk = true : lastNameOk = true
   ) : (
-    formData[n].setAttribute("data-error-visible", "true"),
+    formData[num].setAttribute("data-error-visible", "true"),
     num == 0 ? firstNameOk = false : lastNameOk = false
   );
 }
