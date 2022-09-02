@@ -7,7 +7,9 @@ let participationOk = false;
 let cityTournamentOk = false;
 let termsOfUseOk = false;
 let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-let regexNumber = /^([0-9]|[1-9][0-9]|100)$/;
+let regexNumber = /^[0-9][0-9]$/;
+//Accepte que les lettre avec acents sans chiffre avec 2 caractéres minimum 
+let regexNumberCaractere = /^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\s]{2,}$/;
 /////////////////////////////////////////////////////////
 // Initialisation des Elements du DOM nécessaire
 const modalbg = document.querySelector(".bground");
@@ -50,10 +52,31 @@ function displayFrom() {
   formReserve.style.display = "block";
   validateMessage.style.display = "none";
 }
+
+formDataInput[0].addEventListener("change", function(e){
+  twoCaractereOrmore(e.target.value,0);
+});
+
+formDataInput[1].addEventListener("change", function(e){
+  twoCaractereOrmore(e.target.value,1);
+});
+
+formDataInput[2].addEventListener("change", function(e){
+  emailValidate(e.target.value);
+});
+
+formDataInput[3].addEventListener("change", function(e){
+  birthdayValidate(e.target.value);
+});
+
+formDataInput[4].addEventListener("change", function(e){
+  participationValidate(e.target.value);
+});
+
 //fonctions qui fait apparaitre les erreurs et change les variable de validation
 // Vérification de la longeur de l'input
 function twoCaractereOrmore(value,num){
-  value.length >= 2 ?(
+  regexNumberCaractere.test(value) ?(
     formData[num].removeAttribute("data-error-visible"),
     num == 0 ? firstNameOk = true : lastNameOk = true
   ) : (
@@ -82,7 +105,7 @@ function birthdayValidate(e){
     birthdayOk = false
   );
 }
-//Vérifie si c'est un nombre compris entre 1 et 100
+//Vérifie si c'est un nombre compris entre 0 et 100
 //Pour eviter que les gens ecrivent des chiffre abérent
 function participationValidate(e){
   //Utilisation des regex

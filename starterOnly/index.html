@@ -63,7 +63,7 @@
             >
               <div
                 class="formData"
-                data-error="Veuillez entrer 2 caractères ou plus.">
+                data-error="Veuillez entrer 2 caractères ou plus et contenir que des lettres.">
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
@@ -75,7 +75,7 @@
               </div>
               <div
                 class="formData"
-                data-error="Veuillez entrer 2 caractères ou plus.">
+                data-error="Veuillez entrer 2 caractères ou plus et contenir que des lettres.">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -107,12 +107,13 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                  
+                  min="1892-01-01" 
+                  max="2004-12-31"
                 /><br>
               </div>
               <div
                 class="formData"
-                data-error="Veuillez entrer un chiffre s'il vous plaît.">
+                data-error="Veuillez entrer un chiffre entre 0 et 99 s'il vous plaît.">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" >
               </div>
